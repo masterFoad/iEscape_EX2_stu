@@ -103,7 +103,8 @@ public class Instructor extends Employee {
 			Date f = r.getFinishDateTime();
 			if(start.before(s) && finish.after(s)) return false;
 			if(start.after(s)&& finish.before(f)) return false;
-		//	if(start.after(s)&& finish.after(f)) return false;
+//			if(start.after(s)&& finish.after(f)) return false;
+			if(start.before(f)&& finish.after(f)) return false;
 			if(start.equals(s)){
 				return false;
 			}
