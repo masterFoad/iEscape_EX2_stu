@@ -9,34 +9,78 @@
 <?import javafx.scene.layout.*?>
 
 
-        <?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <GridPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
           fx:controller="gui.controllers.forms.AddCustomerView">
-        <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
 
-        <Text text="Add new Customer"
-              GridPane.columnIndex="0" GridPane.rowIndex="0"
-              GridPane.columnSpan="1" />
+    <Text text="Add new Customer"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="1"/>
 
-        <Label text="First Name:"
+
+    <TextField fx:id="txtFullName"
+               promptText="Full Name"
                GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Label fx:id="errorFullName"
+           textFill="red"
+           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-        <TextField fx:id="txtFirstName"
-                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-        <Label text="Last Name:"
+    <TextField fx:id="txtEmail"
+               promptText="Email Address"
                GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-
-        <TextField fx:id="txtLastName"
-                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-
-        <Button fx:id="btnAddCustomer"
-                text="Add"
-                GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <Label fx:id="errorEmail"
+           textFill="red"
+           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
 
+    <Label text="Birth Date:"
+           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+
+    <DatePicker fx:id="birthDatePicker" editable="false" promptText=" Birth Date"
+                GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <Label fx:id="errorDate"
+           textFill="red"
+           GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <Label text="Level:"
+           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+
+    <ComboBox fx:id="levelList"
+              GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <Label fx:id="errorLevel"
+           textFill="red"
+           GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+
+    <PasswordField fx:id="txtPassword"
+                   promptText="Password"
+                   GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+    <Label fx:id="errorPassword"
+           textFill="red"
+           GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+    <PasswordField fx:id="txtConfirmPassword"
+                   promptText="Confirm Password"
+                   GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+
+
+    <Button fx:id="btnSetAddress"
+            text="Address"
+            GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+    <Label fx:id="errorAddress"
+           textFill="red"
+           GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+
+    <Button fx:id="btnAddCustomer"
+            text="Add"
+            GridPane.columnIndex="1" GridPane.rowIndex="9"/>
 
 
 </GridPane>

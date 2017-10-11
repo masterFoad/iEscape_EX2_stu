@@ -19,6 +19,7 @@ public class Address {
 	private String street;
 
 	// -------------------------------Constructors-----------------------------
+
 	public Address(String country, E_Cities city, String street, int housNumber, String[] phoneNumber) {
 		super();
 		this.city = city;

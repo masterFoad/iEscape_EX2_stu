@@ -41,14 +41,68 @@ public class SysData {
 	private ArrayList<Branch> branches;
 	private ArrayList<Customer> customers;
 	private ArrayList<RoomRun> roomRuns;
+	private Map<String,Object> myParameters;
 
 	// -------------------------------Constructors------------------------------
-	public SysData() {
+	private SysData() {
 		instructors = new ArrayList<Instructor>();
 		receptionists = new ArrayList<Receptionist>();
 		branches = new ArrayList<Branch>();
 		customers = new ArrayList<Customer>();
 		roomRuns = new ArrayList<RoomRun>();
+		myParameters = new HashMap<>();
+	}
+
+
+
+	private static class SingleInstance {
+		private static final SysData instance = new SysData();
+	}
+
+	public static SysData getInstance() {
+		return SingleInstance.instance;
+	}
+
+
+	/*
+	My parameters methods;
+	 */
+
+	/**
+	 * clear all parameters
+	 */
+	public void clearAllParameters(){
+		myParameters.clear();
+	}
+
+	/**
+	 * remove key and value from paramters map
+	 * @param key
+	 */
+	public void removeParameter(String key){
+		myParameters.remove(key);
+	}
+
+	/**
+	 * storing new object
+	 * @param key
+	 * @param value
+	 */
+	public void setParameter(String key,Object value){
+		myParameters.put(key,value);
+	}
+
+	/**
+	 * return stored parameter
+	 * @param key
+	 * @return
+	 */
+	public Object getParameter(String key){
+		return myParameters.get(key);
+	}
+
+	public Map<String,Object> getParameters(){
+		return this.myParameters;
 	}
 
 	// -----------------------------------------Getters--------------------------------------

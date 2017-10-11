@@ -16,7 +16,7 @@ import utils.E_Levels;
  * @author Java Course Team 2017 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Customer {
+public class Customer implements Addressable{
 	// -------------------------------Class
 	// Members------------------------------
 	private String Id;
@@ -30,6 +30,9 @@ public class Customer {
 	private Address customerAddress;
 
 	// -------------------------------Constructors------------------------------
+
+	public Customer(){};
+
 	public Customer(String id, String firstName, String lastName, Date birthdate, String password, E_Levels level,
 			URL email, Subscription sub, Address customerAddress) {
 		this.Id = checkId(id);
@@ -310,4 +313,13 @@ public class Customer {
 				+ customerAddress + "]";
 	}
 
+	@Override
+	public Address getTheAddress() {
+		return this.customerAddress;
+	}
+
+	@Override
+	public void setTheAddress(Address address) {
+		this.customerAddress=address;
+	}
 }

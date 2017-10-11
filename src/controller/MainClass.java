@@ -59,7 +59,7 @@ public class MainClass {
 	/**
 	 * The main object for the program
 	 */
-	private static SysData SysData;
+	private static SysData myData;
 
 	/**
 	 * Scanner for input
@@ -88,16 +88,16 @@ public class MainClass {
 		MyFileLogWriter.initializeMyFileWriter();
 		// if the file has next - not empty
 		if (input.hasNext()) {
-			SysData = new SysData();
+			myData = SysData.getInstance();
 		}
 		/*
 		 * read the commands. loop while input file [input.hasnext()] and the
-		 * SysData is not null
+		 * myData is not null
 		 */
-		while (input.hasNext() && SysData != null) {
+		while (input.hasNext() && myData != null) {
 			/*
 			 * read the command, must be first at line because command value
-			 * determine which method will be activated in SysData object.
+			 * determine which method will be activated in myData object.
 			 */
 			command = input.next();
 			isUpdated = false;
@@ -112,14 +112,14 @@ public class MainClass {
 				int housNumber = Integer.parseInt(input.next());
 				String[] phoneNumber = { input.next() };
 
-				isUpdated = SysData.addBranch(branchNumber, branchName, city, country, street, housNumber, phoneNumber);
+				isUpdated = myData.addBranch(branchNumber, branchName, city, country, street, housNumber, phoneNumber);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine(
-							"addBranch returns: " + "Successfully added Branch " + branchNumber + " to SysData");
+							"addBranch returns: " + "Successfully added Branch " + branchNumber + " to myData");
 				} else {
 					MyFileLogWriter.writeToFileInSeparateLine(
-							"addBranch returns: " + "Failed to add new Branch " + branchNumber + " to SysData");
+							"addBranch returns: " + "Failed to add new Branch " + branchNumber + " to myData");
 				}
 			}
 
@@ -144,15 +144,15 @@ public class MainClass {
 				String[] phoneNumber = { input.next() };
 				Address address = new Address(country, city, street, housNumber, phoneNumber);
 
-				isUpdated = SysData.addInstructor(employeeNumber, firstName, lastName, birthDate, startWorkingDate,
+				isUpdated = myData.addInstructor(employeeNumber, firstName, lastName, birthDate, startWorkingDate,
 						password, level, address, types);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("addInstructor returns: "
-							+ "Successfully added instructor " + employeeNumber + " to SysData");
+							+ "Successfully added instructor " + employeeNumber + " to myData");
 				} else {
 					MyFileLogWriter.writeToFileInSeparateLine("addInstructor returns: "
-							+ "Failed to add new instructor " + employeeNumber + " to SysData");
+							+ "Failed to add new instructor " + employeeNumber + " to myData");
 				}
 			}
 
@@ -172,15 +172,15 @@ public class MainClass {
 				String[] phoneNumber = { input.next() };
 				Address address = new Address(country, city, street, housNumber, phoneNumber);
 
-				isUpdated = SysData.addReceptionist(employeeNumber, firstName, lastName, birthDate, startWorkingDate,
+				isUpdated = myData.addReceptionist(employeeNumber, firstName, lastName, birthDate, startWorkingDate,
 						password, address);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("addReceptionist returns: "
-							+ "Successfully added receptionist " + employeeNumber + " to SysData");
+							+ "Successfully added receptionist " + employeeNumber + " to myData");
 				} else {
 					MyFileLogWriter.writeToFileInSeparateLine("addReceptionist returns: "
-							+ "Failed to add new receptionist " + employeeNumber + " to SysData");
+							+ "Failed to add new receptionist " + employeeNumber + " to myData");
 				}
 			}
 
@@ -201,14 +201,14 @@ public class MainClass {
 				String[] phoneNumber = { input.next() };
 				Address address = new Address(country, city, street, housNumber, phoneNumber);
 
-				isUpdated = SysData.addCustomer(id, firstName, lastName, birthDate, password, level, email, address);
+				isUpdated = myData.addCustomer(id, firstName, lastName, birthDate, password, level, email, address);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine(
-							"addCustomer returns: " + "Successfully added Customer with id " + id + " to SysData");
+							"addCustomer returns: " + "Successfully added Customer with id " + id + " to myData");
 				} else {
 					MyFileLogWriter.writeToFileInSeparateLine(
-							"addCustomer returns: " + "Failed to add new Customer with id " + id + " to SysData");
+							"addCustomer returns: " + "Failed to add new Customer with id " + id + " to myData");
 				}
 			}
 
@@ -220,7 +220,7 @@ public class MainClass {
 				int receptNumber = Integer.parseInt(input.next());
 				E_Periods period = E_Periods.valueOf(input.next());
 				Date startDate = df.parse(input.next());
-				isUpdated = SysData.addSubToCustomer(subNumber, custId, receptNumber, period, startDate);
+				isUpdated = myData.addSubToCustomer(subNumber, custId, receptNumber, period, startDate);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("addSubToCustomer returns: "
@@ -237,7 +237,7 @@ public class MainClass {
 				int instructorNumber = Integer.parseInt(input.next());
 				int branchNumber = Integer.parseInt(input.next());
 
-				isUpdated = SysData.connectInstructorToBranch(instructorNumber, branchNumber);
+				isUpdated = myData.connectInstructorToBranch(instructorNumber, branchNumber);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine(
@@ -257,7 +257,7 @@ public class MainClass {
 				int receptionistNumber = Integer.parseInt(input.next());
 				int branchNumber = Integer.parseInt(input.next());
 
-				isUpdated = SysData.connectReceptionistToBranch(receptionistNumber, branchNumber);
+				isUpdated = myData.connectReceptionistToBranch(receptionistNumber, branchNumber);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine(
@@ -282,7 +282,7 @@ public class MainClass {
 				E_Rooms roomType = E_Rooms.valueOf(input.next());
 				int branchNum = Integer.parseInt(input.next());
 
-				isUpdated = SysData.addRoomToBranch(roomNum, name, maxNumOfParticipants, minNumOfParticipants,
+				isUpdated = myData.addRoomToBranch(roomNum, name, maxNumOfParticipants, minNumOfParticipants,
 						timeLimit, level, roomType, branchNum);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
@@ -302,7 +302,7 @@ public class MainClass {
 				String text = input.next();
 				text = text.replace('-', ' ');
 
-				isUpdated = SysData.addHintToRoom(branchNum, roomNum, hintNum, text);
+				isUpdated = myData.addHintToRoom(branchNum, roomNum, hintNum, text);
 				if (isUpdated) { // if adding successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("addHintToRoom returns: " + "Successfully added hint "
@@ -323,7 +323,7 @@ public class MainClass {
 				int branchNum = Integer.parseInt(input.next());
 				int roomNum = Integer.parseInt(input.next());
 
-				isUpdated = SysData.addRoomRun(roomRunNum, dateTime, duration, instructorNum, branchNum, roomNum);
+				isUpdated = myData.addRoomRun(roomRunNum, dateTime, duration, instructorNum, branchNum, roomNum);
 				if (isUpdated) { // if added successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("addRoomRun returns: " + "Successfully added RoomRun "
@@ -340,7 +340,7 @@ public class MainClass {
 				int roomRunNum = Integer.parseInt(input.next());
 				E_Equipment equipment = E_Equipment.valueOf(input.next());
 
-				isUpdated = SysData.addEquipmentToRoomRun(roomRunNum, equipment);
+				isUpdated = myData.addEquipmentToRoomRun(roomRunNum, equipment);
 				if (isUpdated) { // if added successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("addEquipmentToRoomRun returns: "
@@ -357,7 +357,7 @@ public class MainClass {
 				int roomRunNum = Integer.parseInt(input.next());
 				E_Equipment equipment = E_Equipment.valueOf(input.next());
 
-				isUpdated = SysData.removeEquipmentFromRoomRun(roomRunNum, equipment);
+				isUpdated = myData.removeEquipmentFromRoomRun(roomRunNum, equipment);
 				if (isUpdated) { // if added successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("removeEquipmentFromRoomRun returns: "
@@ -374,7 +374,7 @@ public class MainClass {
 				String custNum = input.next();
 				int roomRunNum = Integer.parseInt(input.next());
 
-				isUpdated = SysData.addCustomerToRoomRun(custNum, roomRunNum);
+				isUpdated = myData.addCustomerToRoomRun(custNum, roomRunNum);
 				if (isUpdated) { // if added successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("addCustomerToRoomRun returns: "
@@ -391,7 +391,7 @@ public class MainClass {
 				int roomRunNum = Integer.parseInt(input.next());
 				int hintNum = Integer.parseInt(input.next());
 
-				isUpdated = SysData.giveAHint(roomRunNum, hintNum);
+				isUpdated = myData.giveAHint(roomRunNum, hintNum);
 				if (isUpdated) { // if added successfully, then true returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("giveAHint returns: "
@@ -412,13 +412,13 @@ public class MainClass {
 				int housNumber = Integer.parseInt(input.next());
 				String[] phoneNumber = { input.next() };
 
-				isUpdated = SysData.changeCustomerAddress(customerId, country, city, street, housNumber, phoneNumber);
+				isUpdated = myData.changeCustomerAddress(customerId, country, city, street, housNumber, phoneNumber);
 				if (isUpdated) { // if changing successfully, then true
 									// returned,
 					// the following message is written to the output file
 					MyFileLogWriter.writeToFileInSeparateLine("changeCustomerAddress returns: "
 							+ "Successfully changed address of customer " + customerId + " "
-							+ SysData.getCustomers().get(SysData.getCustomers().indexOf(new Customer(customerId))));
+							+ myData.getCustomers().get(myData.getCustomers().indexOf(new Customer(customerId))));
 				} else {
 					MyFileLogWriter.writeToFileInSeparateLine(
 							"changeCustomerAddress returns: " + "Failed to change address of customer " + customerId);
@@ -430,7 +430,7 @@ public class MainClass {
 				// Cancel an existing subscription
 				int subNumber = Integer.parseInt(input.next());
 
-				isUpdated = SysData.removeSubscription(subNumber);
+				isUpdated = myData.removeSubscription(subNumber);
 				if (isUpdated) { // if canceling successfully, then true
 									// returned,
 					// the following message is written to the output file
@@ -444,7 +444,7 @@ public class MainClass {
 
 			// ================ Query Command ================
 			else if (command.equals("getAllParticipatedRoomRunsOfMostActiveCustomer")) {
-				List<RoomRun> mostRoomRuns = SysData.getAllParticipatedRoomRunsOfMostActiveCustomer();
+				List<RoomRun> mostRoomRuns = myData.getAllParticipatedRoomRunsOfMostActiveCustomer();
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("Query_1");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
@@ -465,7 +465,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_2");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getTopJanuaryReceptionist returns:");
-				Receptionist top = SysData.getTopJanuaryReceptionist();
+				Receptionist top = myData.getTopJanuaryReceptionist();
 				if (top != null) {
 					MyFileLogWriter.writeToFileInSeparateLine("the top january receptionist is: "
 							+ top.getEmployeeNumber() + ", " + top.getFirstName() + " " + top.getLastName());
@@ -478,7 +478,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_3");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getTheMostPopularRoomType returns:");
-				E_Rooms most = SysData.getTheMostPopularRoomType();
+				E_Rooms most = myData.getTheMostPopularRoomType();
 				if (most != null) {
 					MyFileLogWriter.writeToFileInSeparateLine("the most popular room type is: " + most);
 				} else
@@ -490,7 +490,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_4");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getAllSuperSeniorInstructors returns:");
-				Instructor[] ssenior = SysData.getAllSuperSeniorInstructors();
+				Instructor[] ssenior = myData.getAllSuperSeniorInstructors();
 				if (ssenior != null) {
 					int i = 1;
 					for (Instructor ins : ssenior)
@@ -506,7 +506,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_5");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getTheMostActiveDay returns:");
-				Date most = SysData.getTheMostActiveDay();
+				Date most = myData.getTheMostActiveDay();
 				if (most != null) {
 					MyFileLogWriter.writeToFileInSeparateLine("the most active day is: " + most);
 				} else
@@ -518,7 +518,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_6");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getAllRoomRunsWithoutHints returns:");
-				ArrayList<RoomRun> roomRuns = SysData.getAllRoomRunsWithoutHints();
+				ArrayList<RoomRun> roomRuns = myData.getAllRoomRunsWithoutHints();
 				if (roomRuns != null && roomRuns.size() != 0) {
 					MyFileLogWriter.writeToFileInSeparateLine("the following roomRuns:");
 					int i = 1;
@@ -535,7 +535,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_7");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getTopEquipment returns:");
-				E_Equipment most = SysData.getTopEquipment();
+				E_Equipment most = myData.getTopEquipment();
 				if (most != null) {
 					MyFileLogWriter.writeToFileInSeparateLine("the top equipment type is: " + most);
 				} else
@@ -547,7 +547,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_8");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getAllCustomersAttendingMoreThan1City returns:");
-				ArrayList<Customer> custs = SysData.getAllCustomersAttendingMoreThan1City();
+				ArrayList<Customer> custs = myData.getAllCustomersAttendingMoreThan1City();
 				if (custs != null && custs.size() != 0) {
 					MyFileLogWriter.writeToFileInSeparateLine("the following customers:");
 					int i = 1;
@@ -563,7 +563,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_9");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getPopularBranches returns:");
-				Set<Branch> branches = SysData.getPopularBranches();
+				Set<Branch> branches = myData.getPopularBranches();
 				if (branches != null && branches.size() != 0) {
 					MyFileLogWriter.writeToFileInSeparateLine("the following branches:");
 					int i = 1;
@@ -579,7 +579,7 @@ public class MainClass {
 				MyFileLogWriter.writeToFileInSeparateLine("Query_10");
 				MyFileLogWriter.writeToFileInSeparateLine("=======");
 				MyFileLogWriter.writeToFileInSeparateLine("getPotentialCustomersPerBranch returns:");
-				Map<Branch, ArrayList<Customer>> branchAndCusts = SysData.getPotentialCustomersPerBranch();
+				Map<Branch, ArrayList<Customer>> branchAndCusts = myData.getPotentialCustomersPerBranch();
 				if (branchAndCusts != null) {
 					MyFileLogWriter.writeToFileInSeparateLine("Potential customers per branch are:");
 					for (Entry<Branch, ArrayList<Customer>> entry : branchAndCusts.entrySet()) {

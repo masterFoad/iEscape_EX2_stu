@@ -16,7 +16,7 @@ public class testingMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("FXML TableView Example");
+        primaryStage.setTitle("Add Customer");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/gui/views/addCustomerView.fxml"));
 

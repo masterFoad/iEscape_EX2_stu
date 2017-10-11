@@ -10,7 +10,7 @@ import java.util.Date;
  * @author Java Course Team 2017 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Employee {
+public class Employee implements Addressable{
 	// -------------------------------Class  Members------------------------------
 	private int empNum;
 	private String firstName;
@@ -143,5 +143,15 @@ public class Employee {
 		return "employeeNumber=" + empNum + ", firstName=" + firstName + ", lastName=" + lastName + ", birthDate="
 				+ formatter.format(birthdate) + ", startWorkingDate= " + formatter.format(startWorkingDate)
 				+ ", password=" + Password;
+	}
+
+	@Override
+	public Address getTheAddress() {
+		return this.address;
+	}
+
+	@Override
+	public void setTheAddress(Address address) {
+		this.address=address;
 	}
 }
