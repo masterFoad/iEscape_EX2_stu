@@ -10,7 +10,7 @@ import java.util.HashMap;
  * @author Java Course Team 2017 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Branch {
+public class Branch implements Addressable{
 	// -------------------------------Class Members------------------------------
 	private int branchNumber;
 	private String branchName;
@@ -20,6 +20,9 @@ public class Branch {
 	private HashMap<Integer, Room> rooms;
 
 	// -------------------------------Constructors------------------------------
+
+	public Branch(){}
+
 	public Branch(int branchNumber, String branchName, Address branchAddress) {
 		this.branchNumber = branchNumber;
 		this.branchName = branchName;
@@ -214,5 +217,15 @@ public class Branch {
 		return "Branch [branchNumber=" + branchNumber + ", branchName=" + branchName + ", branchAddress="
 				+ branchAddress + ", receptionists=" + receptionists + ", instructors=" + instructors + ", rooms="
 				+ rooms + "]";
+	}
+
+	@Override
+	public Address getTheAddress() {
+		return this.branchAddress;
+	}
+
+	@Override
+	public void setTheAddress(Address address) {
+			this.branchAddress=address;
 	}
 }
