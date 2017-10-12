@@ -71,6 +71,9 @@ public class AddCustomerView implements Initializable {
     @FXML
     private Label errorDate;
 
+    @FXML
+    private Button btnExit;
+
 //    @FXML
 //    protected void addCustomer(ActionEvent event) {
 //
@@ -86,7 +89,7 @@ public class AddCustomerView implements Initializable {
 
         SysData.getInstance().setParameter("Addressable",customerToAdd);
 
-
+        btnExit.setOnAction(t->Activities.closeWindow(t));
 
         btnAddCustomer.setOnAction(t -> {
 

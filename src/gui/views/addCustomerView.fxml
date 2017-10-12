@@ -82,5 +82,9 @@
             text="Add"
             GridPane.columnIndex="1" GridPane.rowIndex="9"/>
 
+    <Button fx:id="btnExit"
+            text="Cancel"
+            GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+
 
 </GridPane>

@@ -30,6 +30,9 @@ public class AddBranch implements Initializable{
     @FXML
     private Button btnAddBranch;
 
+    @FXML
+    private Button btnExit;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,7 +42,7 @@ public class AddBranch implements Initializable{
 
         errorBranchName.requestFocus();
 
-
+        btnExit.setOnAction(t->Activities.closeWindow(t));
 
         btnSetAddress.setOnAction(t -> {
 

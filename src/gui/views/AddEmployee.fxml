@@ -1,16 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<GridPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.views.AddEmployee"
-            prefHeight="400.0" prefWidth="600.0">
+<GridPane prefHeight="400.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.forms.add.AddEmployee">
 
+    <padding>
+        <Insets bottom="10" left="25" right="25" top="25" />
+    </padding>
+
+    <Text text="Add new Employee" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+
+
+    <TextField fx:id="txtFullName" promptText="Full Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label fx:id="errorFullName" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+
+    <DatePicker fx:id="birthDatePicker" editable="false" promptText=" Birth Date" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <Label fx:id="errorBirthDate" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+
+    <DatePicker fx:id="startWorkingDatePicker" editable="false" promptText=" Working Date" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label fx:id="errorWorkingDate" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+
+    <PasswordField fx:id="txtPassword" promptText="Password" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label fx:id="errorPassword" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+    <PasswordField fx:id="txtConfirmPassword" promptText="Confirm Password" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+
+    <Button fx:id="btnSetAddress" text="Address" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <Label fx:id="errorAddress" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+
+        <RadioButton fx:id="instructorRadio" mnemonicParsing="false" text="Instructor" GridPane.columnIndex="0" GridPane.rowIndex="8">
+      <toggleGroup>
+         <ToggleGroup fx:id="myGroup" />
+      </toggleGroup></RadioButton>
+
+        <RadioButton fx:id="receptionistRadio" mnemonicParsing="false" text="Receptionist" toggleGroup="$myGroup" GridPane.rowIndex="7" />
+
+    <Label fx:id="labelLevels" text="Level:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+
+    <ComboBox fx:id="levelList" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+    <Label fx:id="errorLevel" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+
+    <Label  fx:id="labelRooms" text="Room Types" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+
+    <ScrollPane fx:id="scrollPlat" GridPane.columnIndex="0" GridPane.rowIndex="12" GridPane.rowSpan="4" fitToHeight="true" fitToWidth="true">
+        <ListView fx:id="listRoomTypes" />
+
+    </ScrollPane>
+
+    <Label fx:id="errorRoom" GridPane.columnIndex="1" GridPane.rowIndex="12" textFill="red"/>
+
+    <Label fx:id="errorEmployee" GridPane.columnIndex="1" GridPane.rowIndex="7" textFill="red"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <Button fx:id="btnAddEmployee" text="Add" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+
+    <Button fx:id="btnExit" text="Cancel" GridPane.columnIndex="0" GridPane.rowIndex="16" />
 
 
 

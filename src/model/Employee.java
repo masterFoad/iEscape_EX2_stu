@@ -37,6 +37,10 @@ public class Employee implements Addressable{
 		this.empNum = empNum;
 	}
 
+	public Employee() {
+
+	}
+
 	// -------------------------------Getters And Setters------------------------------
 	public int getEmployeeNumber() {
 		return empNum;

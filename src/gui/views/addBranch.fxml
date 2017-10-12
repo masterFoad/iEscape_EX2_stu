@@ -43,7 +43,9 @@
             GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
 
-
+    <Button fx:id="btnExit"
+            text="Cancel"
+            GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
 
 </GridPane>
