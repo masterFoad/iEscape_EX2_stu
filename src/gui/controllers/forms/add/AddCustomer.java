@@ -1,4 +1,4 @@
-package gui.controllers.forms;
+package gui.controllers.forms.add;
 
 import controller.SysData;
 import gui.utils.methods.Activities;
@@ -26,7 +26,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.StringJoiner;
 
-public class AddCustomerView implements Initializable {
+public class AddCustomer implements Initializable {
 
 
     @FXML

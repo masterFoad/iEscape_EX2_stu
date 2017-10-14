@@ -16,9 +16,9 @@ public class testingMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Add Customer");
+        primaryStage.setTitle("Add Branch");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/gui/views/addEmployee.fxml"));
+        loader.setLocation(getClass().getResource("/gui/views/addRoom.fxml"));
 
         Pane myPane = loader.load();
         Scene myScene = new Scene(myPane);

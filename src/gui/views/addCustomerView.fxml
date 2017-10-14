@@ -12,9 +12,8 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <GridPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
-          fx:controller="gui.controllers.forms.AddCustomerView">
+          fx:controller="gui.controllers.forms.add.AddCustomer">
     <padding>
         <Insets top="25" right="25" bottom="10" left="25"/>
     </padding>

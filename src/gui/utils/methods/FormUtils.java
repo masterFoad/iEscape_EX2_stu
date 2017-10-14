@@ -44,11 +44,11 @@ public class FormUtils {
      * @return
      */
     public static String generateId() {
-        int length = 9;
+
         String candidateChars = "1234567890";
         StringBuilder sb =  new StringBuilder();
         Random random = new Random();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < utils.Constants.ID_NUMBER_SIZE; i++) {
             sb.append(candidateChars.charAt(random.nextInt(candidateChars
                     .length())));
         }
