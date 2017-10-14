@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="gui.controllers.forms.add.AddRoom"
+          prefHeight="600.0" prefWidth="600.0">
+
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+
+    <Text text="Add New Room"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="1"/>
+
+    <TextField fx:id="txrRoomName" promptText="Room Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label fx:id="errorRoomName" GridPane.columnIndex="1" GridPane.rowIndex="1" textFill="red"/>
+
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <Label  text="Max Participants: "
+               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Label fx:id="maxPartValue"
+               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    </GridPane>
+
+    <Slider fx:id="sliderMaxPart"
+            GridPane.columnSpan="2"
+            blockIncrement="1"
+            layoutX="26.0"
+            layoutY="32.0"
+            majorTickUnit="2"
+            max="11.0"
+            minorTickCount="1"
+            showTickLabels="true"
+            showTickMarks="true"
+            min="1"
+            GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="4">
+        <Label  text="Min Participants: "
+                GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Label fx:id="minPartValue"
+               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+    </GridPane>
+
+    <Slider fx:id="sliderMinPart"
+            GridPane.columnSpan="2"
+            blockIncrement="1"
+            layoutX="26.0"
+            layoutY="32.0"
+            majorTickUnit="2"
+            max="11.0"
+            minorTickCount="1"
+            showTickLabels="true"
+            showTickMarks="true"
+            min="1"
+            GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="6">
+        <Label  text="Time Limit: "
+                GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Label fx:id="timeLimitValue"
+               GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    </GridPane>
+    <Slider fx:id="timeLimitSlider"
+            GridPane.columnSpan="2"
+            blockIncrement="10"
+            layoutX="26.0"
+            layoutY="32.0"
+            majorTickUnit="30"
+            max="135.0"
+            minorTickCount="5"
+            showTickLabels="true"
+            showTickMarks="true"
+            min="15"
+            GridPane.columnIndex="0" GridPane.rowIndex="7" />
+
+
+
+    <Label fx:id="labelLevels" text="Level:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+
+    <ComboBox fx:id="levelList" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+    <Label fx:id="errorLevel" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+
+
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="10">
+        <Label   text="Branch:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+        <Label fx:id="errorBranch" GridPane.columnIndex="1" GridPane.rowIndex="0" textFill="red"/>
+    </GridPane>
+
+
+    <ScrollPane fx:id="scrollPlat2" GridPane.columnIndex="0" GridPane.rowIndex="11" GridPane.rowSpan="4" fitToHeight="true" fitToWidth="true">
+        <ListView fx:id="listBranches" />
+
+    </ScrollPane>
+
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="10">
+        <Label  text="Room Types:"  GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Label  fx:id="errorRoom" GridPane.columnIndex="1" GridPane.rowIndex="0" textFill="red"/>
+    </GridPane>
+
+
+    <ScrollPane fx:id="scrollPlat" GridPane.columnIndex="1" GridPane.rowIndex="11" GridPane.rowSpan="4" fitToHeight="true" fitToWidth="true">
+        <ListView fx:id="listRoomTypes" />
+
+    </ScrollPane>
+
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="16">
+        <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0">
+
+            <Button fx:id="btnAddRoom" text="Add"  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Button fx:id="btnExit" text="Cancel" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        </GridPane>
+
+    </GridPane>
+
+
+
+
+
+</GridPane>
