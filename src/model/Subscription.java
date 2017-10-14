@@ -114,18 +114,18 @@ public class Subscription {
 		
 		if(this.roomRuns.containsKey(roomRunToAdd.getRoomRunNum())) return false;
 
-//    	  for(RoomRun RR : this.roomRuns.values()){
-//    	
-//    			  if((roomRunToAdd.getStartDateTime().after(RR.getStartDateTime())&& roomRunToAdd.getStartDateTime().before(RR.getFinishDateTime()))){
-//    				  return false;
-//    			  }
-//    				  if((roomRunToAdd.getStartDateTime().before(RR.getStartDateTime())&& roomRunToAdd.getFinishDateTime().after(RR.getFinishDateTime()))){
-//    					  return false;
-//    				  }
-//    				  if(roomRunToAdd.getStartDateTime().equals(RR.getStartDateTime())){
-//    					  return false;
-//    				  }
-    //s	  }
+    	  for(RoomRun RR : this.roomRuns.values()){
+
+    			  if((roomRunToAdd.getStartDateTime().after(RR.getStartDateTime())&& roomRunToAdd.getStartDateTime().before(RR.getFinishDateTime()))){
+    				  return false;
+    			  }
+    				  if((roomRunToAdd.getStartDateTime().before(RR.getStartDateTime())&& roomRunToAdd.getFinishDateTime().after(RR.getFinishDateTime()))){
+    					  return false;
+    				  }
+    				  if(roomRunToAdd.getStartDateTime().equals(RR.getStartDateTime())){
+    					  return false;
+    				  }
+      }
 
 		this.roomRuns.put(roomRunToAdd.getRoomRunNum(), roomRunToAdd);
 		return true;

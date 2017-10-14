@@ -1,6 +1,9 @@
 package model;
 
+import controller.SysData;
+
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -11,7 +14,7 @@ import java.util.HashMap;
  * @author Java Course Team 2017 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Receptionist extends Employee {
+public class Receptionist extends Employee implements IsUser<Receptionist>{
 	// -------------------------------Class
 	// Members------------------------------
 	private HashMap<Integer, Subscription> Subscriptions;
@@ -59,7 +62,7 @@ public class Receptionist extends Employee {
 	/**
 	 * This method deletes a subscription from the subscriptions array
 	 * 
-	 * @param lessonToCancel
+
 	 * @return true if the lesson was deleted successfully, false otherwise
 	 */
 	public boolean removeSubscription(Subscription sub) {
@@ -85,5 +88,18 @@ public class Receptionist extends Employee {
 			if (sub.getStartDate().getMonth() == 0 && sub.getStartDate().getYear() + 1900 == Year.now().getValue())
 				numOfAssignments++;
 		return numOfAssignments;
+	}
+
+	@Override
+	public Receptionist validateUserAndPass() {
+		ArrayList<Receptionist> Receptionists = SysData.getInstance().getReceptionists();
+
+
+		if(Receptionists!=null){
+			if(Receptionists.contains(this) && Receptionists.get(Receptionists.indexOf(this)).getPassword().equals(this.getPassword())){
+				return Receptionists.get(Receptionists.indexOf(this));
+			}
+		}
+		return null;
 	}
 }

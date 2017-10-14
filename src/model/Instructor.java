@@ -1,10 +1,8 @@
 package model;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
+import controller.SysData;
 import utils.E_Rooms;
 
 /**
@@ -14,7 +12,7 @@ import utils.E_Rooms;
  * @author Java Course Team 2017 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Instructor extends Employee {
+public class Instructor extends Employee{
 	// -------------------------------Class
 	// Members------------------------------
 	private HashSet<E_Rooms> Types;
@@ -130,4 +128,8 @@ public class Instructor extends Employee {
 			}
 		}return false;
 	}
+
+
+
+
 }

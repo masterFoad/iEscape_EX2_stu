@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import controller.SysData;
+import gui.utils.TypeConstants;
 import utils.Constants;
 import utils.E_Levels;
 
@@ -16,7 +18,7 @@ import utils.E_Levels;
  * @author Java Course Team 2017 - Shai Gutman
  * @author University Of Haifa - Israel
  */
-public class Customer implements Addressable{
+public class Customer implements Addressable,IsUser{
 	// -------------------------------Class
 	// Members------------------------------
 	private String Id;
@@ -322,4 +324,19 @@ public class Customer implements Addressable{
 	public void setTheAddress(Address address) {
 		this.customerAddress=address;
 	}
+
+	@Override
+	public Customer validateUserAndPass() {
+		ArrayList<Customer> customers = SysData.getInstance().getCustomers();
+
+		if(customers!=null){
+			if(customers.contains(this) && customers.get(customers.indexOf(this)).getPassword().equals(this.getPassword())){
+				return customers.get(customers.indexOf(this));
+			}
+		}
+			return null;
+
+	}
+
+
 }
