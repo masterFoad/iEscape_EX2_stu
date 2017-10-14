@@ -51,6 +51,7 @@ public class SysData {
 		customers = new ArrayList<Customer>();
 		roomRuns = new ArrayList<RoomRun>();
 		myParameters = new HashMap<>();
+
 	}
 
 

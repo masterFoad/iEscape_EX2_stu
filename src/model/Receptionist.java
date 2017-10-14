@@ -26,6 +26,10 @@ public class Receptionist extends Employee implements IsUser<Receptionist>{
 		this.Subscriptions = new HashMap<>();
 	}
 
+	public Receptionist() {
+		super();
+	}
+
 	public Receptionist(int empNum) {
 		super(empNum);
 	}
@@ -92,12 +96,12 @@ public class Receptionist extends Employee implements IsUser<Receptionist>{
 
 	@Override
 	public Receptionist validateUserAndPass() {
-		ArrayList<Receptionist> Receptionists = SysData.getInstance().getReceptionists();
+		ArrayList<Receptionist> receptionists = SysData.getInstance().getReceptionists();
 
 
-		if(Receptionists!=null){
-			if(Receptionists.contains(this) && Receptionists.get(Receptionists.indexOf(this)).getPassword().equals(this.getPassword())){
-				return Receptionists.get(Receptionists.indexOf(this));
+		if(receptionists!=null){
+			if(receptionists.contains(this) && receptionists.get(receptionists.indexOf(this)).getPassword().equals(this.getPassword())){
+				return receptionists.get(receptionists.indexOf(this));
 			}
 		}
 		return null;

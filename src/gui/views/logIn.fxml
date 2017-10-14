@@ -10,7 +10,7 @@
 <?import javafx.geometry.Insets?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="gui.controllers.logIn.LogIn"
+          fx:controller="gui.management.LogIn"
           prefHeight="400.0" prefWidth="600.0">
 
 
@@ -41,7 +41,7 @@
                 />
     </HBox>
 
-    <Text fx:id="actiontarget"
-          GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+    <Label fx:id="nameHolder"></Label>
+    <Label fx:id="passHolder"></Label>
 
 </GridPane>

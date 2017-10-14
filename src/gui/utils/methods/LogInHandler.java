@@ -4,6 +4,9 @@ import gui.utils.TypeConstants;
 import model.Customer;
 import model.Receptionist;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class LogInHandler {
 
     private Customer customerToLog;
@@ -12,19 +15,36 @@ public class LogInHandler {
 
     public LogInHandler(String id,String password){
 
+        Receptionist myRec =null;
+        Customer myCustomer = null;
+        try{
+            int recId= Integer.parseInt(id);
+            myRec = new Receptionist(recId);
+            myRec.setPassword(password);
+            receptionistToLog=myRec.validateUserAndPass();
 
-        Customer myCustomer = new Customer(id);
-        myCustomer.setPassword(password);
-        customerToLog=myCustomer.validateUserAndPass();
+        }catch (NumberFormatException e){
+
+            try {
+                myCustomer = new Customer();
+                myCustomer.setEmail(new URL(id));
+                myCustomer.setPassword(password);
+                customerToLog=myCustomer.validateUserAndPass();
+
+
+            } catch (MalformedURLException e1) {
+
+            }
 
 
 
-        Receptionist myRec = new Receptionist(Integer.valueOf(id));
-        myRec.setPassword(password);
-        receptionistToLog=myRec.validateUserAndPass();
 
-        if(id.equals(TypeConstants.ADMIN) && password.equals(TypeConstants.ADMIN))
-            this.admin=true;
+        }finally {
+
+            if(id.equals(TypeConstants.ADMIN) && password.equals(TypeConstants.ADMIN))
+                this.admin=true;
+        }
+
 
 
     }

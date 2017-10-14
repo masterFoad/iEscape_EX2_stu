@@ -10,6 +10,6 @@ public class TypeConstants {
 
     public static final String INSTRUCTOR="instructor";
 
-    public final static String ADMIN="admin";
+    public final static String ADMIN="Admin";
 
 }

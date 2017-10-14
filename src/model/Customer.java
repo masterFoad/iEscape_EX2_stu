@@ -62,6 +62,7 @@ public class Customer implements Addressable,IsUser{
 		this.subs = new HashMap<>();
 	}
 
+
 	public Customer(String id) {
 		this.Id = checkId(id);
 	}
@@ -328,10 +329,18 @@ public class Customer implements Addressable,IsUser{
 	@Override
 	public Customer validateUserAndPass() {
 		ArrayList<Customer> customers = SysData.getInstance().getCustomers();
-
+		Customer cusToLog = null;
 		if(customers!=null){
-			if(customers.contains(this) && customers.get(customers.indexOf(this)).getPassword().equals(this.getPassword())){
-				return customers.get(customers.indexOf(this));
+
+			for(Customer c : customers){
+				if(c.getEmail().equals(this.getEmail())){
+					cusToLog=c;
+					break;
+				}
+			}
+
+			if(cusToLog!=null && cusToLog.getPassword().equals(this.getPassword())){
+				return cusToLog;
 			}
 		}
 			return null;
