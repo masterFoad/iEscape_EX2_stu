@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="gui.controllers.forms.add.AddBranch"
+          prefHeight="150" prefWidth="300.0">
+
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+</padding>
+
+    <Text text="Add New Branch"
+          GridPane.columnIndex="0" GridPane.rowIndex="0"
+          GridPane.columnSpan="1"/>
+
+
+    <Label text="Branch Name:"
+           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="txtBranchName"
+               promptText="Branch Name"
+               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Label fx:id="errorBranchName"
+           textFill="red"
+           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <Button fx:id="btnSetAddress"
+            text="Address"
+            GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <Label fx:id="errorAddress"
+           textFill="red"
+           GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+    <Button fx:id="btnAddBranch"
+            text="Add"
+            GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+
+    <Button fx:id="btnExit"
+            text="Cancel"
+            GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+
+
+</GridPane>
