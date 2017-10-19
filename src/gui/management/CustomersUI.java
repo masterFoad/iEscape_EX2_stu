@@ -2,11 +2,14 @@ package gui.management;
 
 import com.jfoenix.controls.JFXButton;
 import controller.SysData;
+import gui.SceneController;
+import gui.utils.Acts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import model.Customer;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,9 +44,19 @@ public class CustomersUI implements Initializable{
 
 
         initTable();
+        setupAddButton();
 
 
     }
+
+    private String getFxmlPath(){
+        return ""+"/gui/views/customersUI.fxml";
+    }
+
+    private String getAddButtonPath(){
+        return ""+"/gui/views/addCustomerView.fxml";
+    }
+
 
 
     private String[] tableColumns(){
@@ -72,6 +86,9 @@ public class CustomersUI implements Initializable{
 
             columns.add(new TableColumn<>(columnName));
             columns.get(0).setCellFactory(cellFactoryValueForIndex(0));
+            columns.get(0).setResizable(true);
+            columns.get(0).setMinWidth(200);
+
             index++;
 
         }
@@ -108,8 +125,18 @@ public class CustomersUI implements Initializable{
         }
 
 
+    private void setupAddButton() {
 
 
+        add.setOnAction(event -> {
+            try {
+                SceneController.getInstance().popUp(Acts.getScene(Acts.ADD_CUSTOMER), "Add Customer");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
     public int numberOfColumns() {
         return 6;
     }
