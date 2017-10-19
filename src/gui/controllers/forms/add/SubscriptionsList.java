@@ -25,7 +25,9 @@ public class SubscriptionsList implements Initializable {
     @FXML
     private HBox toolbar;
     @FXML
-    private TableView<Subscription> tableView;
+    private TableView<Subscription> tableView1;
+    @FXML
+    private TableView<Subscription> tableView2;
     @FXML
     private JFXButton pop;
     @FXML
