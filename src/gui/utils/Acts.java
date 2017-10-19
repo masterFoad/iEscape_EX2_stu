@@ -9,6 +9,8 @@ public class Acts {
 
     public final static String LOG_IN = "login";
     public final static String MAIN_MENU = "mainmenu";
+    public final static String ADD_CUSTOMER = "addcustomer";
+
 
 
     private  static FXMLLoader loader;
@@ -28,6 +30,11 @@ public class Acts {
                 loader = new FXMLLoader();
                 loader.setLocation(Acts.class.getResource("/gui/views/mainMenu.fxml"));
                 return loader.load();
+            }
+            if(sceneName.equals(ADD_CUSTOMER)){
+            loader = new FXMLLoader();
+            loader.setLocation(Acts.class.getResource("/gui/views/addCustomerView.fxml"));
+            return loader.load();
             }
 
 
