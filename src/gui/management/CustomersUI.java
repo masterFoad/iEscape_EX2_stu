@@ -2,11 +2,14 @@ package gui.management;
 
 import com.jfoenix.controls.JFXButton;
 import controller.SysData;
+import gui.SceneController;
+import gui.utils.Acts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import model.Customer;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,9 +44,19 @@ public class CustomersUI implements Initializable{
 
 
         initTable();
+        setupAddButton();
 
 
     }
+
+    private String getFxmlPath(){
+        return ""+"/gui/views/customersUI.fxml";
+    }
+
+    private String getAddButtonPath(){
+        return ""+"/gui/views/addCustomerView.fxml";
+    }
+
 
 
     private String[] tableColumns(){
@@ -54,7 +68,7 @@ public class CustomersUI implements Initializable{
         "birthdate",
         "level",
         "Email",
-        "customerAddress"};
+        };
         return arr;
 
     }
@@ -71,7 +85,10 @@ public class CustomersUI implements Initializable{
         for (String columnName : tableColumns()) {
 
             columns.add(new TableColumn<>(columnName));
-            columns.get(0).setCellFactory(cellFactoryValueForIndex(0));
+            columns.get(index).setCellFactory(cellFactoryValueForIndex(index));
+            columns.get(index).setResizable(true);
+            columns.get(index).setMinWidth(200);
+
             index++;
 
         }
@@ -99,17 +116,25 @@ public class CustomersUI implements Initializable{
                 case 5:
                     return (Callback<TableColumn.CellDataFeatures<Customer, String>, ObservableValue<String>>)
                             param -> new SimpleStringProperty(""+param.getValue().getEmail());
-                case 6:
-                    return (Callback<TableColumn.CellDataFeatures<Customer, String>, ObservableValue<String>>)
-                            param -> new SimpleStringProperty(""+param.getValue().getCustomerAddress());
+
 
             }
             return null;
         }
 
 
+    private void setupAddButton() {
 
 
+        add.setOnAction(event -> {
+            try {
+                SceneController.getInstance().popUp(Acts.getScene(Acts.ADD_CUSTOMER), "Add Customer");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
     public int numberOfColumns() {
         return 6;
     }
