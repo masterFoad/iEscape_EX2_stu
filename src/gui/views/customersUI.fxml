@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import com.jfoenix.controls.JFXButton?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="gui.management.CustomersUI"
+            stylesheets="@../../gui/res/css/style.css"
+            prefHeight="400.0" prefWidth="600.0">
+
+
+    <TableView fx:id="tableView"
+               AnchorPane.leftAnchor="0.0"
+               AnchorPane.topAnchor="0.0"
+               AnchorPane.rightAnchor="0.0"
+               AnchorPane.bottomAnchor="0.0"/>
+
+
+    <HBox fx:id="toolbar"
+          spacing="10"
+          AnchorPane.rightAnchor="16.0"
+          AnchorPane.bottomAnchor="16.0"
+          alignment="CENTER">
+
+
+
+        <JFXButton contentDisplay="CENTER" textAlignment="CENTER" styleClass="fab" style="-fx-background-color: #f1c40f;
+            -fx-min-width: 32;
+    -fx-max-width: 32;
+    -fx-min-height: 32;
+    -fx-max-height: 32;" fx:id="pop">
+            <graphic>
+                <VBox  maxWidth="${pop.width}" maxHeight="${pop.height}" alignment="CENTER">
+                    <ImageView fitWidth="36" fitHeight="36">
+                        <image >
+                            <Image url="@../../gui/res/edit.png" />
+                        </image>
+                    </ImageView>
+                </VBox>
+            </graphic>
+        </JFXButton>
+
+        <JFXButton contentDisplay="CENTER" textAlignment="CENTER"  styleClass="fab"  style="-fx-background-color: #3498db;
+            -fx-min-width: 32;
+            -fx-max-width: 32;
+            -fx-min-height: 32;
+            -fx-max-height: 32;" fx:id="export">
+            <graphic>
+                <VBox  maxWidth="${pop.width}" maxHeight="${pop.height}" alignment="CENTER">
+                    <ImageView fitWidth="48" fitHeight="48">
+                        <image >
+                            <Image url="@../../gui/res/ic_file_download.png" />
+                        </image>
+                    </ImageView>
+                </VBox>
+            </graphic>
+        </JFXButton>
+
+        <JFXButton contentDisplay="CENTER" textAlignment="CENTER" styleClass="fab" fx:id="add" >
+            <graphic>
+                <VBox maxWidth="${add.width}" maxHeight="${add.height}" alignment="CENTER">
+                    <ImageView>
+                        <image>
+                            <Image url="@../../gui/res/ic_add.png" />
+                        </image>
+                    </ImageView>
+                </VBox>
+            </graphic>
+        </JFXButton>
+        <!---fx-background-color: rgb(26, 188, 156);-->
+
+    </HBox>
+
+
+
+
+</AnchorPane>
