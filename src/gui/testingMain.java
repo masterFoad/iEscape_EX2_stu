@@ -18,7 +18,7 @@ public class testingMain extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Add Branch");
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/gui/views/customersUI.fxml"));
+        loader.setLocation(getClass().getResource("/gui/views/subscriptionsList.fxml"));
         Pane myPane = loader.load();
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);
