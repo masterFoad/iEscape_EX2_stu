@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
+import gui.utils.TypeConstants;
 public class Subscribe implements Initializable {
 
 
@@ -36,7 +36,7 @@ public class Subscribe implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Customer customer = (Customer)SysData.getInstance().getParameter("selectedCustomer");
 
-        Receptionist receptionist = (Receptionist)SysData.getInstance().getParameter("loggedReceptionist");
+        Receptionist receptionist = (Receptionist)SysData.getInstance().getParameter(TypeConstants.LOGGED_RECEPTIONIST);
 
         //TODO : check what happened id the number starts with 0s e.g 055  = 55 or 055 ? important
         int subscriptionId = Integer.parseInt(FormUtils.generateId());
