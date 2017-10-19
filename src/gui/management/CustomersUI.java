@@ -68,7 +68,7 @@ public class CustomersUI implements Initializable{
         "birthdate",
         "level",
         "Email",
-        "customerAddress"};
+        };
         return arr;
 
     }
@@ -85,9 +85,9 @@ public class CustomersUI implements Initializable{
         for (String columnName : tableColumns()) {
 
             columns.add(new TableColumn<>(columnName));
-            columns.get(0).setCellFactory(cellFactoryValueForIndex(0));
-            columns.get(0).setResizable(true);
-            columns.get(0).setMinWidth(200);
+            columns.get(index).setCellFactory(cellFactoryValueForIndex(index));
+            columns.get(index).setResizable(true);
+            columns.get(index).setMinWidth(200);
 
             index++;
 
@@ -116,9 +116,7 @@ public class CustomersUI implements Initializable{
                 case 5:
                     return (Callback<TableColumn.CellDataFeatures<Customer, String>, ObservableValue<String>>)
                             param -> new SimpleStringProperty(""+param.getValue().getEmail());
-                case 6:
-                    return (Callback<TableColumn.CellDataFeatures<Customer, String>, ObservableValue<String>>)
-                            param -> new SimpleStringProperty(""+param.getValue().getCustomerAddress());
+
 
             }
             return null;
