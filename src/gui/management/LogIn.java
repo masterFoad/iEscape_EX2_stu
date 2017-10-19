@@ -86,8 +86,8 @@ public class LogIn implements Initializable{
                     * setting up the Logged in user, Must check which one is not null.
                     */
                    SysData.getInstance().setParameter(TypeConstants.ADMIN,admin);
-                   SysData.getInstance().setParameter(TypeConstants.CUSTOMER,customerToLog);
-                   SysData.getInstance().setParameter(TypeConstants.RECEPTIONIST,recToLog);
+                   SysData.getInstance().setParameter(TypeConstants.LOGGED_CUSTOMER,customerToLog);
+                   SysData.getInstance().setParameter(TypeConstants.LOGGED_RECEPTIONIST,recToLog);
 
                     //setting up the scene changer
                    SceneController scenes = SceneController.getInstance();
