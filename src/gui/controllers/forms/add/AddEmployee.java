@@ -318,6 +318,7 @@ public class AddEmployee implements Initializable{
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == ButtonType.OK){
                             //TODO
+                            Activities.closeWindow(t);
                             //System.out.println(SysData.getInstance().getCustomers().toString());
                         }
 

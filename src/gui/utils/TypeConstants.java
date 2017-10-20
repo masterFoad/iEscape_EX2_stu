@@ -11,4 +11,7 @@ public class TypeConstants {
 
     public final static String SELECTED_CUSTOMERS="selectedCustomers";
 
+
+    public final static String EDITING_CUSTOMER="editingCustomer";
+
 }

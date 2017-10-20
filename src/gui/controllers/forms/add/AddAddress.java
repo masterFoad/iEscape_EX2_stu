@@ -68,6 +68,17 @@ public class AddAddress implements Initializable {
 
         Addressable toAddAddressTo = (Addressable)SysData.getInstance().getParameter("Addressable");
 
+        if(toAddAddressTo.getTheAddress()!=null){
+            txtHouseNumber.setText(""+toAddAddressTo.getTheAddress().getHousNumber());
+            StringBuilder phone = new StringBuilder();
+            for(String s : toAddAddressTo.getTheAddress().getPhoneNumber()) {
+                phone.append(s);
+            }
+            txtPhoneNumber.setText(phone.toString());
+            txtStreet.setText(""+toAddAddressTo.getTheAddress().getStreet());
+            cmbCities.getSelectionModel().select(toAddAddressTo.getTheAddress().getCity());
+        }
+
         /**
          * close window
          */

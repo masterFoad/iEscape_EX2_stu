@@ -182,6 +182,7 @@ public class AddRoom implements Initializable{
                                 Optional<ButtonType> result = alert.showAndWait();
                                 if (result.get() == ButtonType.OK){
                                     //TODO
+                                    Activities.closeWindow(e);
                                     //System.out.println(SysData.getInstance().getCustomers().toString());
                                 }
 

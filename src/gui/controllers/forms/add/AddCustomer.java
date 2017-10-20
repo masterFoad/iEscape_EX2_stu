@@ -1,30 +1,30 @@
 package gui.controllers.forms.add;
 
 import controller.SysData;
+import gui.utils.Commons;
 import gui.utils.methods.Activities;
 import gui.utils.methods.FormUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import model.Customer;
-import utils.E_Cities;
 import utils.E_Levels;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.StringJoiner;
+
+import static gui.utils.Commons.clearSelectedCustomers;
+import static gui.utils.Commons.isEditingCustomer;
 
 public class AddCustomer implements Initializable {
 
@@ -74,22 +74,47 @@ public class AddCustomer implements Initializable {
     @FXML
     private Button btnExit;
 
-//    @FXML
-//    protected void addCustomer(ActionEvent event) {
-//
-//    }
+    private Customer customerToAdd;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Customer customerToAdd = new Customer();
-        txtFullName.setText("");
-
+        customerToAdd = new Customer();
         ObservableList<E_Levels> levels = FXCollections.observableArrayList(E_Levels.values());
         levelList.setItems(levels);
 
         SysData.getInstance().setParameter("Addressable",customerToAdd);
+        if(true){
+            if(Commons.isSelectedCustomers() && isEditingCustomer()){
+                customerToAdd = Commons.getSelectedCustomers().get(0);
 
-        btnExit.setOnAction(t->Activities.closeWindow(t));
+                txtFullName.setText(customerToAdd.getFirstName()+" "+customerToAdd.getLastName());
+                txtEmail.setText(customerToAdd.getEmail().toString());
+                txtPassword.setText(customerToAdd.getPassword());
+                txtConfirmPassword.setText(customerToAdd.getPassword());
+                Instant instant = Instant.ofEpochMilli(customerToAdd.getBirthdate().getTime());
+                LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+                LocalDate localDate = localDateTime.toLocalDate();
+                birthDatePicker.setValue(localDate);
+                levelList.getSelectionModel().select(customerToAdd.getLevel());
+                customerToAdd.setTheAddress(customerToAdd.getTheAddress());
+                btnAddCustomer.setText("Edit");
+
+
+            }
+//            txtFullName.setText();
+
+        }
+
+
+
+
+
+        btnExit.setOnAction(t->{
+
+            Activities.closeWindow(t);
+            clearSelectedCustomers();
+
+        });
 
         btnAddCustomer.setOnAction(t -> {
 
@@ -155,6 +180,17 @@ public class AddCustomer implements Initializable {
                     errorDate.getText().equals("") &&
                     errorLevel.getText().equals("") ){
 
+
+                if(Commons.isLoggedReceptionist()||Commons.isLoggedAdmin()) {
+                    if (Commons.isSelectedCustomers()) {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Successfully Updated Customer");
+                        alert.setHeaderText("Success");
+                        alert.setContentText("Customer "+customerToAdd.getFirstName()+" has been added.");
+                        Activities.closeWindow(t);
+                    }
+                }
+
                 if(SysData.getInstance().addCustomer(FormUtils.generateId(),customerToAdd.getFirstName(),customerToAdd.getLastName(),customerToAdd.getBirthdate(),customerToAdd.getPassword(),customerToAdd.getLevel(),customerToAdd.getEmail(),customerToAdd.getCustomerAddress())){
 
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -166,6 +202,7 @@ public class AddCustomer implements Initializable {
                     if (result.get() == ButtonType.OK){
                         //TODO
                         //System.out.println(SysData.getInstance().getCustomers().toString());
+                        Activities.closeWindow(t);
                     }
 
 

@@ -4,25 +4,34 @@ import com.jfoenix.controls.JFXButton;
 import controller.SysData;
 import gui.SceneController;
 import gui.utils.Acts;
+import gui.utils.TypeConstants;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
+import model.Address;
 import model.Customer;
+import utils.E_Levels;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static gui.utils.Commons.setEditingCustomerOff;
+import static gui.utils.Commons.setEditingCustomerOn;
+import static utils.E_Cities.Herzliya;
 
 
 public class CustomersUI implements Initializable{
@@ -45,6 +54,8 @@ public class CustomersUI implements Initializable{
 
         initTable();
         setupAddButton();
+        setSelectionListener();
+        doubleClickListener();
 
 
     }
@@ -75,8 +86,41 @@ public class CustomersUI implements Initializable{
 
     private void initTable(){
         setTableColumns();
+        System.out.println(dataSource().toString());
         tableView.setItems(FXCollections.observableArrayList(dataSource()));
 
+    }
+
+    private void setSelectionListener(){
+
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                ObservableList<Customer> selectedCustomers = tableView.getSelectionModel().getSelectedItems();
+
+                SysData.getInstance().setParameter(TypeConstants.SELECTED_CUSTOMERS,selectedCustomers.stream().collect(Collectors.toList()));
+               // System.out.println( SysData.getInstance().getParameter(TypeConstants.SELECTED_CUSTOMERS));
+            }
+        });
+
+    }
+
+    private void doubleClickListener(){
+
+        tableView.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                setEditingCustomerOn();
+                    ObservableList<Customer> selectedCustomers = tableView.getSelectionModel().getSelectedItems();
+
+                    SysData.getInstance().setParameter(TypeConstants.SELECTED_CUSTOMERS,selectedCustomers.stream().collect(Collectors.toList()));
+                    // System.out.println( SysData.getInstance().getParameter(TypeConstants.SELECTED_CUSTOMERS));
+
+                try {
+                    SceneController.getInstance().popUp(Acts.getScene(Acts.ADD_CUSTOMER), "Edit Customer");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void setTableColumns() {
@@ -85,7 +129,7 @@ public class CustomersUI implements Initializable{
         for (String columnName : tableColumns()) {
 
             columns.add(new TableColumn<>(columnName));
-            columns.get(index).setCellFactory(cellFactoryValueForIndex(index));
+            columns.get(index).setCellValueFactory(cellFactoryValueForIndex(index));
             columns.get(index).setResizable(true);
             columns.get(index).setMinWidth(200);
 
@@ -128,6 +172,7 @@ public class CustomersUI implements Initializable{
 
         add.setOnAction(event -> {
             try {
+                setEditingCustomerOff();
                 SceneController.getInstance().popUp(Acts.getScene(Acts.ADD_CUSTOMER), "Add Customer");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -141,6 +186,7 @@ public class CustomersUI implements Initializable{
 
 
     public Collection<? extends Customer> dataSource() {
+
         return SysData.getInstance().getCustomers();
     }
 

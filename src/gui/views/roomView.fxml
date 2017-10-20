@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<fx:root alignment="CENTER_LEFT" prefHeight="80" prefWidth="400.0" spacing="5" styleClass="email-view"
+         stylesheets="@../../gui/res/css/modena.css" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.112"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <Region fx:id="unreadIndicator" prefWidth="5.0"/>
+    <Label fx:id="senderAvatar" prefHeight="40.0" prefWidth="40.0" styleClass="sender-image-small"/>
+    <Region prefWidth="10"/>
+    <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+        <Region prefHeight="10"/>
+        <HBox>
+            <Label fx:id="fromLabel" styleClass="from-label">Anindya Chatterjee</Label>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="dateLabel" styleClass="date-label">31st Dec 1999</Label>
+            <Region prefWidth="5"/>
+        </HBox>
+        <Region prefHeight="5"/>
+        <HBox>
+            <Label fx:id="subjectLabel" styleClass="subject-label">Test Mail Subject</Label>
+            <Region HBox.hgrow="ALWAYS"/>
+            <ImageView fx:id="attachmentLabel" styleClass="attachment-label">
+                <Image requestedHeight="15" requestedWidth="15" url="https://beebom-redkapmedia.netdna-ssl.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg"/>
+            </ImageView>
+            <Region prefWidth="5"/>
+        </HBox>
+        <Region prefHeight="5"/>
+        <HBox>
+            <Label fx:id="contentLabel" styleClass="content-label" maxWidth="400">
+                Here is some text for test mail just to check how does
+                it look on mock ups. The final value will change
+            </Label>
+            <Region HBox.hgrow="ALWAYS"/>
+            <ImageView fx:id="favoriteLabel" styleClass="favorite-label">
+                <Image requestedHeight="15" requestedWidth="15" url="https://beebom-redkapmedia.netdna-ssl.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg"/>
+            </ImageView>
+            <Region minWidth="5"/>
+        </HBox>
+    </VBox>
+</fx:root>
